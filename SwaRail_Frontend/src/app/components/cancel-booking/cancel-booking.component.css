@@ -1,0 +1,86 @@
+
+.cancel-container {
+    max-width: 850px;
+    margin: auto;
+  }
+  
+
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+
+  .ticket-container {
+    background: linear-gradient(to right, #ffffff, #f8f9fa);
+    border-left: 5px solid #dc3545;
+    padding: 20px;
+  }
+  
+
+  .pnr-highlight {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #dc3545;
+    text-transform: uppercase;
+  }
+  
+  .train-details {
+    background: #f1f1f1;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+  }
+  
+  .passenger-item {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .passenger-item:hover {
+    transform: translateY(-2px);
+    background: #f1f1f1;
+  }
+  
+  .custom-checkbox {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+    transform: scale(1);
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .custom-checkbox:checked {
+    transform: scale(1.2);
+  }
+  
+  .confirm-btn {
+    font-size: 1.2rem;
+    padding: 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .confirm-btn:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+  }
+  

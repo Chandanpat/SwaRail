@@ -1,0 +1,48 @@
+<div class="container mt-4 p-4 bg-white rounded shadow">
+    <h3 class="text-center text-primary mb-4">Manage Train Schedules</h3>
+  
+    <div class="d-flex justify-content-end mb-3 gap-2">
+      <button class="btn btn-success px-4" (click)="addSchedule()" style="cursor: pointer;">+ Add Schedule</button>
+      <button class="btn btn-danger px-4" (click)="deleteScheduleBtn()" style="cursor: pointer;">Delete Schedules</button>
+    </div>
+  
+    <form [formGroup]="searchForm" class="row g-3 mb-4">
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="Search by Schedule ID" formControlName="scheduleID">
+      </div>
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="Search by Train Name" formControlName="trainName">
+      </div>
+      <div class="col-md-4">
+        <input type="date" class="form-control" formControlName="journeyDate">
+      </div>
+    </form>
+  
+    <table class="table table-hover table-striped border rounded">
+      <thead class="table-primary text-center">
+        <tr>
+          <th>Schedule ID</th>
+          <th>Train Name</th>
+          <th>Journey Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let schedule of schedules | scheduleFilter:searchValues:trains" class="text-center align-middle">
+          <td>{{ schedule.scheduleID }}</td>
+          <td>{{ getTrainName(schedule.trainID) }}</td>
+          <td>{{ schedule.journeyDate | date: 'yyyy-MM-dd' }}</td>
+          <td>
+            <button class="btn btn-sm btn-danger" (click)="deleteSchedule(schedule.trainID, schedule.journeyDate)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="schedules.length === 0" class="text-muted text-center mt-4">
+      No schedules available.
+    </div>
+  </div>
+  

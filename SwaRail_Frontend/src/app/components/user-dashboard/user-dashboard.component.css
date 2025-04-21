@@ -1,0 +1,57 @@
+
+   .ticket-container {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .ticket-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section-title {
+    font-weight: bold;
+    color: #003366;
+    border-bottom: 2px solid #003366;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .highlighted-pnr {
+    font-size: 20px;
+    font-weight: bold;
+    color: #FF6600;
+  }
+  
+  .passenger-details .list-group-item {
+    background: #f8f9fa;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .payment-details {
+    margin-top: 20px;
+  }
+  
+  .payment-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .payment-line {
+    display: flex;
+    justify-content: space-between;
+    background: #eef2f5;
+    padding: 8px;
+    border-radius: 5px;
+  }
+  
+  .payment-label {
+    font-weight: bold;
+    color: #333;
+  }
+  

@@ -1,0 +1,77 @@
+<div class="container ticket-container">
+  <div class="card ticket-card" id="print-section">
+
+    <div class="card-header text-white text-center">
+      <h3>Your Ticket Details</h3>
+    </div>
+
+    <div class="card-body" *ngIf="ticket" >
+
+      <div class="section">
+        <h5 class="section-title">🚆 Booking Summary</h5>
+        <div class="train-info">
+          <p><strong>PNR:</strong> <span class="highlighted-pnr">{{ ticket.pnr }}</span></p>
+          <p><strong>Train:</strong> {{ ticket.trainName }}</p>
+          <p><strong>From:</strong> {{ ticket.sourceStation }}</p>
+          <p><strong>To:</strong> {{ ticket.destinationStation }}</p>
+          <p><strong>Date:</strong> {{ ticket.journeyDate | date:'dd-MM-yyyy' }}</p>
+          <p><strong>Departure:</strong> {{ ticket.sourceDepartureTime || 'N/A' }}</p>
+          <p><strong>Arrival:</strong> {{ ticket.destiArrivalTime || 'N/A' }}</p>
+          <p>
+            <strong>Status: </strong>
+            <span class="badge" 
+                  [ngClass]="{'bg-success': ticket.status === 'Confirmed', 
+                              'bg-warning': ticket.status === 'Pending', 
+                              'bg-danger': ticket.status === 'Cancelled'}">
+              {{ ticket.status || 'N/A' }}
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h5 class="section-title">👥 Passengers</h5>
+        <ul class="list-group">
+          <li *ngFor="let passenger of ticket.passengers" class="list-group-item">
+            <strong>{{ passenger.passengerName }}</strong> ({{ passenger.age }} yrs, {{ passenger.sex }}) - 
+            Coach: {{ passenger.coachNo }} | Seat No.: {{ passenger.seatNo }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h5 class="section-title">💰 Payment Details</h5>
+        <div class="payment-info">
+          <div class="payment-line"><strong>Payment ID:</strong> {{ ticket.paymentID }}</div>
+          <div class="payment-line"><strong>Amount Paid:</strong> ₹{{ ticket.totalFare }}</div>
+          <div class="payment-line"><strong>Method:</strong> {{ ticket.paymentMethod }}</div>
+          <div class="payment-line"><strong>Status:</strong> <span class="badge bg-success">{{ ticket.amtStatus }}</span></div>
+          <div class="payment-line"><strong>Date:</strong> {{ ticket.paymentDate | date:'dd-MM-yyyy HH:mm:ss' }}</div>
+        </div>
+      </div>
+
+      <div *ngIf="ticket.totalRefund && ticket.totalRefund > 0" class="section">
+        <h5 class="section-title">🔄 Refund Details</h5>
+        <div class="refund-info">
+          <p><strong>Refund Amount:</strong> ₹{{ ticket.totalRefund }}</p>
+          <p><strong>Refund Status:</strong> <span class="badge bg-info">{{ ticket.refundStatus || 'Processing' }}</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!ticket" class="p-4 text-center text-danger">
+      No ticket found.
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <button class="btn btn-outline-primary me-2" (click)="goBackToHome()">🏠 Back to Home</button>
+    <button class="btn btn-outline-dark" (click)="printTicket()">
+      <i class="fa fa-print me-2"></i> Print Ticket
+    </button>&nbsp;
+    <button *ngIf="ticket.status !== 'Cancelled'" class="btn btn-danger" (click)="cancelBooking(ticket.pnr)">
+      Cancel Booking
+    </button>
+  </div>
+
+</div>

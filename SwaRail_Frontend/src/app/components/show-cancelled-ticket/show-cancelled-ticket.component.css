@@ -1,0 +1,82 @@
+.ticket-container {
+    max-width: 700px;
+    margin: 70px auto;
+  }
+  
+  .ticket-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+  }
+  
+  .card-header {
+    background: #003366;
+    padding: 18px;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+  }
+  
+  .section {
+    padding: 20px;
+  }
+  
+  .section-title {
+    font-weight: bold;
+    color: #003366;
+    border-bottom: 2px solid #003366;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    font-size: 18px;
+  }
+  
+  .highlighted-pnr {
+    font-size: 20px;
+    font-weight: bold;
+    color: #FF6600;
+  }
+  
+  .train-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 15px;
+    row-gap: 10px;
+    font-size: 16px;
+  }
+  
+  .train-info p {
+    margin: 0;
+  }
+  
+  .passenger-info li {
+    font-size: 15px;
+  }
+  
+  .payment-info,
+  .refund-info {
+    background: #eef2f5;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  .payment-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 16px;
+  }
+  
+  .badge {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+  
+  .btn {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 18px;
+    border-radius: 8px;
+  }
+  

@@ -1,0 +1,55 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="auth-box shadow-lg p-5 rounded bg-light w-100" style="max-width: 600px;">
+      <h2 class="text-center text-primary mb-4">Update Train Details</h2>
+      <form [formGroup]="editTrainForm" (ngSubmit)="updateTrain()">
+  
+        <div class="mb-3">
+          <label class="form-label fw-bold">Train Name</label>
+          <input type="text" formControlName="trainName" class="form-control" required />
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label fw-bold">Source Station</label>
+          <select formControlName="sourceID" class="form-select" required>
+            <option *ngFor="let station of stations" [value]="station.stationID">
+              {{ station.stationName }}
+            </option>
+          </select>
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label fw-bold">Destination Station</label>
+          <select formControlName="destinationID" class="form-select" required>
+            <option *ngFor="let station of stations" [value]="station.stationID">
+              {{ station.stationName }}
+            </option>
+          </select>
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label fw-bold">Total Seats</label>
+          <input type="number" formControlName="totalSeats" class="form-control" required />
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label fw-bold">Fare</label>
+          <input type="number" formControlName="fare" class="form-control" required />
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label fw-bold">Source Departure Time</label>
+          <input type="time" formControlName="sourceDepartureTime" class="form-control" required />
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label fw-bold">Destination Arrival Time</label>
+          <input type="time" formControlName="destiArrivalTime" class="form-control" required />
+        </div>
+  
+        <button type="submit" class="btn btn-warning w-100 mt-3" [disabled]="editTrainForm.invalid">
+          Confirm Update
+        </button>
+      </form>
+    </div>
+  </div>
+  

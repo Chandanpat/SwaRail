@@ -1,0 +1,91 @@
+<div class="ticket-container">
+  <div class="card ticket-card" id="print-section">
+    <div class="card-header bg-danger text-white text-center">
+      <h4>Cancelled Ticket Details</h4>
+    </div>
+
+    <div class="section" *ngIf="cancelledTicket">
+
+      <div>
+        <div class="section-title">SwaRail Booking Summary</div>
+        <div class="train-info">
+          <p><strong>PNR:</strong> <span class="highlighted-pnr">{{ cancelledTicket.pnr }}</span></p>
+          <p><strong>Train:</strong> {{ cancelledTicket.trainName }}</p>
+          <p><strong>Source:</strong> {{ cancelledTicket.sourceStation }}</p>
+          <p><strong>Destination:</strong> {{ cancelledTicket.destinationStation }}</p>
+          <p><strong>Journey Date:</strong>
+            {{ cancelledTicket.journeyDate ? (cancelledTicket.journeyDate | date: 'dd-MM-yyyy') : 'Train Cancelled on Date' }}
+          </p>
+          <p><strong>Departure:</strong> {{ cancelledTicket.sourceDepartureTime || 'N/A' }}</p>
+          <p><strong>Arrival:</strong> {{ cancelledTicket.destiArrivalTime || 'N/A' }}</p>
+          <p>
+            <strong>Status: </strong>
+            <span class="badge"
+              [ngClass]="{
+                'bg-warning': cancelledTicket.status === 'Partially Cancelled',
+                'bg-danger': cancelledTicket.status === 'Cancelled'
+              }"
+            >
+              {{ cancelledTicket.status || 'N/A' }}
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <div class="section-title">Passengers</div>
+        <ul class="list-group passenger-info">
+          <li *ngFor="let passenger of cancelledTicket.passengers" class="list-group-item">
+            <strong>{{ passenger.passengerName }}</strong> ({{ passenger.age }} yrs, {{ passenger.sex }}) -
+            Coach: {{ passenger.coachNo || 'N/A' }} | Seat No.: {{ passenger.seatNo || 'N/A' }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="mt-4 payment-info">
+        <div class="section-title">Payment Details</div>
+        <div *ngIf="cancelledTicket.paymentID">
+        <div class="payment-line"><strong>Payment ID:</strong> {{ cancelledTicket.paymentID }}</div>
+        <div class="payment-line"><strong>Amount Paid:</strong> ₹{{ cancelledTicket.totalFare }}</div>
+        <div class="payment-line"><strong>Payment Method:</strong> {{ cancelledTicket.paymentMethod }}</div>
+        <div class="payment-line"><strong>Payment Date:</strong> {{ cancelledTicket.paymentDate | date:'dd-MM-yyyy HH:mm:ss' }}</div>
+      </div>
+        <div *ngIf="!cancelledTicket.paymentID" class="text-warning mt-2">
+          Payment details not available.
+        </div>
+      </div>
+
+      <div class="mt-4 refund-info">
+        <div class="section-title">Refund Details</div>
+        <div *ngIf="refundDetails">
+          <div class="payment-line"><strong>Refund ID:</strong> {{ refundDetails.paymentID }}</div>
+          <div class="payment-line"><strong>Refund Amount:</strong> ₹{{ cancelledTicket.totalRefund }}</div>
+          <div class="payment-line"><strong>Method:</strong> {{ refundDetails.paymentMethod }}</div>
+          <div class="payment-line">
+            <strong>Status:</strong>
+            <span class="badge bg-success">{{ refundDetails.amtStatus }}</span>
+          </div>
+          <div class="payment-line"><strong>Date:</strong> {{ refundDetails.paymentDate | date:'dd-MM-yyyy HH:mm:ss' }}</div>
+        </div>
+        <div *ngIf="!refundDetails" class="text-warning mt-2">
+          Refund details not available.
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!cancelledTicket" class="p-4 text-center text-danger">
+      No ticket found.
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <button class="btn btn-outline-primary me-2" (click)="goBackToHome()">🏠 Back to Home</button>
+    <button class="btn btn-outline-dark" (click)="printTicket()">
+      <i class="fa fa-print me-2"></i> Print Ticket
+    </button>&nbsp;
+    <button *ngIf="cancelledTicket.status !== 'Cancelled'" class="btn btn-danger" (click)="cancelBooking(cancelledTicket.pnr)">
+      Cancel Booking
+    </button>
+  </div>
+
+</div>

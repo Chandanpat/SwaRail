@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Railway_Reservation_Sys.props" />
+</Project>

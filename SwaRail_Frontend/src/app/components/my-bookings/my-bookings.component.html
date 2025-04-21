@@ -1,0 +1,58 @@
+<div class="container mt-4">
+  <h2 class="text-center text-primary fw-bold">
+    <i class="fas fa-ticket-alt"></i> My Bookings
+  </h2>
+
+  <div *ngIf="errorMessage" class="alert alert-danger text-center fade-in">
+    {{ errorMessage }}
+  </div>
+
+  <div class="row mt-3">
+    <div *ngFor="let booking of bookings" class="col-md-6 col-lg-4 mb-4">
+      <div class="card booking-card shadow-lg border-0">
+        <div class="card-header text-white text-center fw-bold booking-header">
+          PNR: {{ booking.pnr }}
+        </div>
+        <div class="card-body bg-white">
+          <div class="booking-details">
+            <p><i class="fas fa-train text-primary"></i> <strong> Train:</strong> {{ booking.trainName }}</p>
+            <p><i class="fas fa-calendar-alt text-success"></i> <strong> Journey Date:</strong> {{ booking.journeyDate || 'Train Cancelled on Date'}}</p>
+            <p><i class="fas fa-map-marker-alt text-danger"></i> <strong> From:</strong> {{ booking.sourceStation }}</p>
+            <p><i class="fas fa-map-marker-alt text-info"></i> <strong> To:</strong> {{ booking.destinationStation }}</p>
+            <p><i class="fas fa-clock text-warning"></i> <strong> Departure:</strong> {{ booking.sourceDepartureTime || 'N/A' }}</p>
+            <p><i class="fas fa-clock text-secondary"></i> <strong> Arrival:</strong> {{ booking.destiArrivalTime || 'N/A' }}</p>
+          </div>
+
+          <p class="mb-2"><strong> Status: </strong>
+            <span class="badge booking-status"
+              [ngClass]="{
+                'bg-success': booking.status === 'Confirmed',
+                'bg-secondary': booking.status === 'Pending',
+                'bg-warning text-dark': booking.status === 'Partially Cancelled',
+                'bg-danger': booking.status === 'Cancelled'
+              }">
+              {{ booking.status || 'N/A' }}
+            </span>
+          </p>
+        </div>
+
+        <div class="card-footer text-center">
+          <button *ngIf="booking.status === 'Pending'; else detailsButton"
+            class="btn btn-warning w-100 fw-bold text-dark" (click)="makePayment(booking)">
+            💳 Make Payment
+          </button>
+
+          <ng-template #detailsButton>
+            <button class="btn btn-outline-primary w-100 fw-bold" (click)="viewBookingDetails(booking)">
+              🔍 More Details
+            </button>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="bookings.length === 0 && !errorMessage" class="text-center mt-4">
+    <p class="text-muted">❌ No bookings found.</p>
+  </div>
+</div>

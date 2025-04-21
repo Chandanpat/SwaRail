@@ -1,0 +1,43 @@
+<div class="container mt-4">
+    <h2 class="text-center text-primary mb-4">Manage Trains</h2>
+  
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <input type="text" [formControl]="searchControl" placeholder="Search by Train ID or Name"
+        class="form-control w-50 shadow-sm border-primary" />
+      <button class="btn btn-success" (click)="addTrain()">➕ Add Train</button>
+    </div>
+  
+    <table class="table table-striped table-hover shadow">
+      <thead class="bg-primary text-white">
+        <tr>
+          <th>Train ID</th>
+          <th>Train Name</th>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Total Seats</th>
+          <th>Fare</th>
+          <th>Departure</th>
+          <th>Arrival</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr *ngFor="let train of filteredTrains()"> -->
+          <tr *ngFor="let train of trains | trainFilter: (searchControl.value ?? '')">
+          <td>{{ train.trainID }}</td>
+          <td>{{ train.trainName }}</td>
+          <td>{{ train.sourceStation }}</td>
+          <td>{{ train.destinationStation }}</td>
+          <td>{{ train.totalSeats }}</td>
+          <td>₹{{ train.fare }}</td>
+          <td>{{ train.sourceDepartureTime }}</td>
+          <td>{{ train.destiArrivalTime }}</td>
+          <td>
+            <button class="btn btn-warning btn-sm me-2" (click)="editTrain(train.trainID)">✏️ Edit</button>
+            <button class="btn btn-danger btn-sm" (click)="cancelTrain(train.trainID)">❌ Cancel</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

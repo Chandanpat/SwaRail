@@ -1,0 +1,49 @@
+<div class="container mt-4 p-4 bg-light shadow rounded add-schedule-box">
+  <h3 class="text-center text-primary mb-4">Add Schedule</h3>
+
+  <div class="d-flex justify-content-center mb-4">
+    <div class="form-check me-4">
+      <input class="form-check-input" type="radio" name="mode" (change)="toggleScheduleMode(false)" checked>
+      <label class="form-check-label fw-semibold text-dark">Add Single Schedule</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="mode" (change)="toggleScheduleMode(true)">
+      <label class="form-check-label fw-semibold text-dark">Add Multiple Schedules</label>
+    </div>
+  </div>
+
+
+  <form [formGroup]="scheduleForm" (ngSubmit)="onSubmit()" class="col-md-8 mx-auto">
+
+    <div class="mb-3">
+      <label class="form-label fw-bold">Train Name</label>
+      <select class="form-select" formControlName="trainID">
+        <option value="">-- Select Train --</option>
+        <option *ngFor="let train of trains" [value]="train.trainID">
+          {{ train.trainName }}
+        </option>
+      </select>
+    </div>
+
+
+    <div class="mb-3">
+      <label class="form-label fw-bold">
+        {{ isMultiple ? 'From Journey Date' : 'Journey Date' }}
+      </label>
+      <input type="date" class="form-control" formControlName="journeyDate">
+    </div>
+
+  
+    <div *ngIf="isMultiple" class="mb-3">
+      <label class="form-label fw-bold">To Journey Date</label>
+      <input type="date" class="form-control" formControlName="toJourneyDate">
+    </div>
+
+    
+    <div class="mb-2">
+      <button class="btn btn-success w-100" type="submit">
+        {{ isMultiple ? 'Add Multiple Schedules' : 'Add Schedule' }}
+      </button>
+    </div>
+  </form>
+</div>

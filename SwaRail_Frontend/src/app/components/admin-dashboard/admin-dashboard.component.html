@@ -1,0 +1,49 @@
+<div class="admin-dashboard container mt-5">
+  <h2 class="text-center mb-5 text-primary fw-bold">Admin Dashboard</h2>
+
+  <div class="row g-4 justify-content-center">
+
+    <div class="col-md-6 col-lg-3">
+      <div class="dashboard-card card shadow text-white text-center train-card p-4" 
+           (click)="navigateTo('get-trains')" style="cursor: pointer;">
+        <div class="card-body">
+          <i class="fas fa-train fa-2x mb-3"></i>
+          <h5 class="card-title fw-semibold">Trains</h5>
+          <p class="card-text">Manage all train details</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+      <div class="dashboard-card card shadow text-white text-center schedule-card p-4"
+          (click)="navigateTo('get-schedule')" style="cursor: pointer;">
+        <div class="card-body">
+          <i class="fas fa-calendar-alt fa-2x mb-3"></i>
+          <h5 class="card-title fw-semibold">Schedules</h5>
+          <p class="card-text">Set & update schedules</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+      <div class="dashboard-card card shadow text-white text-center station-card p-4" 
+           (click)="navigateTo('manage-stations')" style="cursor: pointer;">
+        <div class="card-body">
+          <i class="fas fa-subway fa-2x mb-3"></i>
+          <h5 class="card-title fw-semibold">Stations</h5>
+          <p class="card-text">Manage stations & stops</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="col-md-6 col-lg-3">
+      <div class="dashboard-card card shadow text-white text-center coach-card p-4">
+        <div class="card-body">
+          <i class="fas fa-couch fa-2x mb-3"></i>
+          <h5 class="card-title fw-semibold">Coaches</h5>
+          <p class="card-text">Manage seating & types</p>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>

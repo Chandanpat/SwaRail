@@ -1,0 +1,17 @@
+
+<nav class="navbar navbar-expand-lg navbar-light premium-navbar shadow-sm px-4 py-2">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    
+    <a class="navbar-brand d-flex align-items-center" routerLink="/">
+      <img src="assets/Project Logo.png" alt="SwaRail Logo" class="logo-img me-2">
+    </a>
+
+    <div class="auth-buttons d-flex align-items-center gap-2">
+      <button *ngIf="isLoggedIn" (click)="goToHome()" class="btn btn-outline-dark animate-btn">🏠 Home</button>
+      <a *ngIf="!isLoggedIn" routerLink="/login" class="btn btn-outline-primary animate-btn">🔑 Login</a>
+      <a *ngIf="!isLoggedIn" routerLink="/register" class="btn btn-success animate-btn">📝 Register</a>
+      <button *ngIf="isLoggedIn" (click)="logout()" class="btn btn-danger animate-btn">🚪 Logout</button>
+    </div>
+  </div>
+</nav>
+

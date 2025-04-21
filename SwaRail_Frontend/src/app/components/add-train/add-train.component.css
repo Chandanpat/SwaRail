@@ -1,0 +1,19 @@
+.train-box {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .train-box:hover {
+    transform: scale(1.01);
+  }
+  
+  button {
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #004080 !important;
+    color: #fff;
+  }
+  

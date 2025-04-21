@@ -1,0 +1,47 @@
+<div class="container mt-4 p-4 bg-light shadow rounded manage-station-box">
+    <h3 class="text-center text-primary mb-4">{{ isEdit ? 'Edit Station' : 'Add Station' }}</h3>
+  
+    <form [formGroup]="stationForm" (ngSubmit)="onSubmit()" class="row g-3">
+      <div class="col-md-8">
+        <input type="text" class="form-control" placeholder="Enter station name" formControlName="stationName">
+      </div>
+      <div class="col-md-4 text-end">
+        <button type="submit" class="btn btn-success w-100">
+          {{ isEdit ? 'Update Station' : 'Add Station' }}
+        </button>
+      </div>
+    </form>
+  
+    <hr class="my-4">
+  
+    <div class="row mb-3">
+      <div class="col-md-6 offset-md-3">
+        <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Search station by name">
+      </div>
+    </div>
+  
+    <div *ngIf="stations.length === 0" class="text-center text-muted">No stations found.</div>
+  
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped align-middle text-center">
+        <thead class="table-primary">
+          <tr>
+            <th style="width: 15%;">ID</th>
+            <th>Station Name</th>
+            <th style="width: 25%;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let station of stations | stationFilter:searchText">
+            <td>{{ station.stationID }}</td>
+            <td>{{ station.stationName }}</td>
+            <td>
+              <button class="btn btn-sm btn-primary me-2" (click)="onEdit(station)">Edit</button>
+              <button class="btn btn-sm btn-danger" (click)="onDelete(station.stationID)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

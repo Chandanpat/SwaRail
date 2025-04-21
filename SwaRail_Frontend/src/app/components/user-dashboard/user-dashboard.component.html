@@ -1,0 +1,38 @@
+<div class="container mt-5">
+    <h2 class="text-center text-primary mb-4">👋 Welcome to Your Dashboard</h2>
+    
+    <div class="row g-4 justify-content-center">
+      
+      <div class="col-md-4">
+        <div class="card text-white bg-primary h-100 shadow-sm hover-shadow" (click)="navigateTo('search-train')" style="cursor: pointer;">
+          <div class="card-body text-center">
+            <i class="bi bi-train-front-fill display-4"></i>
+            <h5 class="card-title mt-3">Search Trains</h5>
+            <p class="card-text">Find trains between stations & book your seat.</p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- <div class="col-md-4">
+        <div class="card text-white bg-warning h-100 shadow-sm hover-shadow" (click)="navigateTo('check-pnr')" style="cursor: pointer;">
+          <div class="card-body text-center">
+            <i class="bi bi-card-checklist display-4"></i>
+            <h5 class="card-title mt-3">Check PNR</h5>
+            <p class="card-text">Track your booking status by entering your PNR.</p>
+          </div>
+        </div>
+      </div> -->
+  
+      <div class="col-md-4">
+        <div class="card text-white bg-purple h-100 shadow-sm hover-shadow" (click)="navigateTo('my-bookings')" style="cursor: pointer; background-color: #6f42c1;">
+          <div class="card-body text-center">
+            <i class="bi bi-ticket-perforated-fill display-4"></i>
+            <h5 class="card-title mt-3">My Bookings</h5>
+            <p class="card-text">View and manage all your booked tickets.</p>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  

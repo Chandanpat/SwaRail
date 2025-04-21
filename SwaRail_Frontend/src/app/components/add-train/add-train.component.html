@@ -1,0 +1,57 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="train-box shadow-lg p-5 rounded bg-light w-50">
+      <h2 class="text-center text-primary mb-4">Add New Train</h2>
+  
+      <form [formGroup]="addTrainForm" (ngSubmit)="addTrain()">
+        <div class="mb-3">
+          <label class="form-label fw-bold">Train Name</label>
+          <input type="text" formControlName="trainName" class="form-control" placeholder="Train Name" />
+        </div>
+  
+        <div class="row mb-3">
+          <div class="col">
+            <label class="form-label fw-bold">Source Station</label>
+            <select formControlName="sourceID" class="form-select">
+              <option value="">Select Source</option>
+              <option *ngFor="let station of stations" [value]="station.stationID">{{ station.stationName }}</option>
+            </select>
+          </div>
+  
+          <div class="col">
+            <label class="form-label fw-bold">Destination Station</label>
+            <select formControlName="destinationID" class="form-select">
+              <option value="">Select Destination</option>
+              <option *ngFor="let station of stations" [value]="station.stationID">{{ station.stationName }}</option>
+            </select>
+          </div>
+        </div>
+  
+        <div class="row mb-3">
+          <div class="col">
+            <label class="form-label fw-bold">Total Seats</label>
+            <input type="number" formControlName="totalSeats" class="form-control" />
+          </div>
+          <div class="col">
+            <label class="form-label fw-bold">Fare (₹)</label>
+            <input type="number" formControlName="fare" class="form-control" />
+          </div>
+        </div>
+  
+        <div class="row mb-4">
+          <div class="col">
+            <label class="form-label fw-bold">Departure Time</label>
+            <input type="time" formControlName="sourceDepartureTime" class="form-control" />
+          </div>
+          <div class="col">
+            <label class="form-label fw-bold">Arrival Time</label>
+            <input type="time" formControlName="destiArrivalTime" class="form-control" />
+          </div>
+        </div>
+  
+        <button type="submit" class="btn btn-primary w-100" [disabled]="addTrainForm.invalid">
+          Confirm Add Train
+        </button>
+      </form>
+    </div>
+  </div>
+  

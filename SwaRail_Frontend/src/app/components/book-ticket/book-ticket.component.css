@@ -1,0 +1,24 @@
+.ticket-container {
+    max-width: 780px;
+    margin: 50px auto;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .animate__animated {
+    animation-duration: 0.8s;
+    animation-fill-mode: both;
+  }
+  
+  .ticket-container .form-control,
+  .ticket-container .form-select {
+    border-radius: 6px;
+    box-shadow: none;
+    transition: all 0.3s ease;
+  }
+  
+  .ticket-container .form-control:focus,
+  .ticket-container .form-select:focus {
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    border-color: #0d6efd;
+  }
+  

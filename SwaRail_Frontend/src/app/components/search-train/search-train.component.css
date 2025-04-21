@@ -1,0 +1,41 @@
+
+    .search-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .search-card {
+      background: #f9fcff;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+
+    .search-container button i {
+      vertical-align: middle;
+    }
+
+    .table {
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .btn-outline-primary {
+      font-weight: 500;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .btn-outline-primary:hover {
+      background-color: #0d6efd;
+      color: #fff;
+    }
+
+    .card-header h3,
+    .card-header h4 {
+      margin: 0;
+    }
+
+    .animate__animated {
+      animation-duration: 0.8s;
+      animation-fill-mode: both;
+    }

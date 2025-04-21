@@ -1,0 +1,75 @@
+ <div class="ticket-container animate__animated animate__fadeIn">
+  <div class="card shadow-lg border-0">
+    <div class="card-header bg-primary text-white text-center rounded-top">
+      <h3><i class="fas fa-ticket-alt me-2"></i>Book Ticket</h3>
+    </div>
+
+    <div class="card-body bg-light" [formGroup]="bookForm">
+      <h5 class="text-center text-secondary mb-3">Train & Schedule Details</h5>
+      <hr>
+
+      <div *ngIf="trainDetails" class="row g-3">
+        <div class="col-md-6"><strong>Train Name:</strong> {{ trainDetails.trainName }}</div>
+        <div class="col-md-6"><strong>Fare:</strong> ₹{{ trainDetails.fare }}</div>
+        <div class="col-md-6"><strong>Source:</strong> {{ trainDetails.sourceStation }}</div>
+        <div class="col-md-6"><strong>Destination:</strong> {{ trainDetails.destinationStation }}</div>
+        <div class="col-md-6"><strong>Departure:</strong> {{ trainDetails.sourceDepartureTime }}</div>
+        <div class="col-md-6"><strong>Arrival:</strong> {{ trainDetails.destiArrivalTime }}</div>
+      </div>
+
+      <div *ngIf="scheduleDetails" class="mt-3">
+        <p><strong>Journey Date:</strong> {{ journeyDate }}</p>
+      </div>
+
+      <hr class="my-4">
+
+      <label class="fw-bold">Coach Type:</label>
+      <select class="form-select mb-3" formControlName="coachType">
+        <option value="Sleeper">Sleeper</option>
+        <option value="AC">AC</option>
+      </select>
+
+      <div formArrayName="passengers">
+        <div *ngFor="let passenger of passengers.controls; let i = index" [formGroupName]="i"
+             class="border rounded p-3 mb-4 bg-white shadow-sm animate__animated animate__fadeInUp">
+          <h6 class="fw-bold text-secondary mb-3">Passenger {{ i + 1 }}</h6>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <input formControlName="name" class="form-control" placeholder="Passenger Name" required />
+            </div>
+            <div class="col-md-3">
+              <input type="number" formControlName="age" class="form-control" placeholder="Age" required />
+            </div>
+            <div class="col-md-3">
+              <select formControlName="sex" class="form-select">
+                <option value="" disabled>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="col-md-12">
+              <input formControlName="address" class="form-control" placeholder="Address" required />
+            </div>
+          </div>
+
+          <div class="mt-3 text-end" *ngIf="i > 0">
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="removePassenger(i)">
+              <i class="fas fa-user-minus"></i> Remove
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mb-3">
+        <button type="button" class="btn btn-outline-secondary" (click)="addPassenger()">
+          <i class="fas fa-user-plus"></i> Add Passenger
+        </button>
+      </div>
+
+      <button type="submit" class="btn btn-success w-100" [disabled]="bookForm.invalid" (click)="bookTicket()">
+        <i class="fas fa-check-circle me-1"></i> Book Ticket
+      </button>
+    </div>
+  </div>
+</div>

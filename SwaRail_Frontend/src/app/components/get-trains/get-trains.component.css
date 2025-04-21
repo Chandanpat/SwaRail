@@ -1,0 +1,26 @@
+.container {
+    max-width: 90%;
+  }
+  
+  .table {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  thead th {
+    text-align: center;
+  }
+  
+  tbody td {
+    vertical-align: middle;
+    text-align: center;
+  }
+  
+  button {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  button:hover {
+    transform: scale(1.1);
+  }
+  

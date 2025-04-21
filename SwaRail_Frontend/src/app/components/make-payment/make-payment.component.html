@@ -1,0 +1,59 @@
+   <div class="payment-container animate__animated animate__fadeIn">
+    <div class="card shadow-lg border-0">
+      <div class="card-header bg-primary text-white text-center rounded-top">
+        <h3><i class="fas fa-wallet me-2"></i>Make Payment</h3>
+      </div>
+  
+      <div class="card-body bg-light">
+
+        <div *ngIf="ticketDetails" class="border p-3 bg-white shadow-sm rounded">
+          <h5 class="text-success"><i class="fas fa-ticket-alt me-1"></i> Ticket Details</h5>
+          <hr>
+          <p><strong>Train Name:</strong> {{ ticketDetails.trainName }}</p>
+          <p><strong>Journey Date:</strong> {{ ticketDetails.journeyDate | date:'dd-MM-yyyy' }}</p>
+          <p><strong>Source:</strong> {{ ticketDetails.sourceStation }}</p>
+          <p><strong>Destination:</strong> {{ ticketDetails.destinationStation }}</p>
+          <p><strong>Departure:</strong> {{ ticketDetails.sourceDepartureTime || 'N/A' }}</p>
+          <p><strong>Arrival:</strong> {{ ticketDetails.destiArrivalTime || 'N/A' }}</p>
+          <p><strong>Passengers:</strong></p>
+          <ul class="list-group">
+            <li *ngFor="let passenger of ticketDetails.passengers" class="list-group-item">
+              {{ passenger.passengerName }} ({{ passenger.age }} yrs, {{ passenger.sex }})
+            </li>
+          </ul>
+          <p class="mt-3"><strong>Total Fare:</strong> ₹{{ ticketDetails.totalFare }}</p>
+        </div>
+  
+        <form [formGroup]="paymentForm" (ngSubmit)="makePayment()" 
+              class="p-4 border bg-white shadow-sm rounded mt-4 animate__animated animate__fadeInUp">
+          <h5 class="text-primary"><i class="fas fa-credit-card me-1"></i> Payment Details</h5>
+          <hr>
+          
+          <div class="mb-3">
+            <label class="fw-bold"><i class="fas fa-id-badge me-1"></i> Reservation ID:</label>
+            <input formControlName="reservationID" class="form-control" type="number" readonly />
+          </div>
+  
+          <div class="mb-3">
+            <label class="fw-bold"><i class="fas fa-rupee-sign me-1"></i> Amount:</label>
+            <input formControlName="amount" class="form-control" type="number" readonly />
+          </div>
+  
+          <div class="mb-3">
+            <label class="fw-bold"><i class="fas fa-money-bill-wave me-1"></i> Payment Method:</label>
+            <select formControlName="paymentMethod" class="form-control">
+              <option value="UPI">UPI</option>
+              <option value="Credit Card">Credit Card</option>
+              <option value="Debit Card">Debit Card</option>
+              <option value="Net Banking">Net Banking</option>
+            </select>
+          </div>
+  
+          <button type="submit" class="btn btn-success w-100" [disabled]="paymentForm.invalid">
+            <i class="fas fa-check-circle me-1"></i> Confirm Payment
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
